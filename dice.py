@@ -24,7 +24,7 @@ class Dice:
         for i, val in enumerate(rolls):
             print "|   Roll #" + str(i+1) + "     " + str(val) + "   |"
             print "|                   |"
-        print " -------------------"
+        print " -------------------\n"
 
     def reroll(self, rolls, input):
         rolls2 = self.rollX(len(input))
@@ -38,11 +38,11 @@ class Dice:
         if chances < 1:
             return rolls
 
-        input = raw_input(self._rerollText)
         # check if input is integer or enter
         while True:
-            if input == "": break
             try:
+                input = raw_input(self._rerollText)
+                if input == "": break
                 input = list(input)
                 if len(input) > 5:
                     print("\nWrong input! Max 5 numbers")
@@ -58,6 +58,9 @@ class Dice:
 
             except ValueError:
                print("\nWrong input! press enter or max 5 numbers")
+               self.rerollInput(rolls, chances)
+            except IndexError:
+               print("\nWrong input! Numbers must be between 1 and 5")
                self.rerollInput(rolls, chances)
             else:
                 break

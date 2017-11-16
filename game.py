@@ -1,19 +1,17 @@
 from dice import Dice
 from scoreboard import Scoreboard
-testRoll = [1,2,3,4]
+import time
 # Make a class of dice
 dice = Dice()
 score = Scoreboard()
-
-score.showScoreboard()
-
-# Roll 5 dice and save it in the list rolls
-rolls = dice.rollX(5)
-dice.printRolls(rolls)
-# Reroll 2 times
-dice.rerollInput(rolls, 2)
-
-# scoreOption = input("Choose which dice to count: ")
-print testRoll
-score.addScore(score.smallStraight(testRoll))
-score.showScoreboard()
+print "\nWelcome to Yahtzee, where you roll dice to score points.\nWhen you score 63 or more points in the upper bracket, you receive an additional 35 points!\n"
+time.sleep(2)
+while(score.getRound() <= 13):
+    score.showScoreboard()
+    rolls = dice.rollX(5)
+    dice.printRolls(rolls)
+    dice.rerollInput(rolls, 2)
+    score.optionsScreen()
+    score.optionsInput(rolls)
+score.endOfGame()
+raw_input("Press any key to exit")
